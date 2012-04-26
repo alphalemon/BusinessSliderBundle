@@ -378,7 +378,7 @@
 		beforeAnimation:function(){}
 	})
 	
-})(jQuery)
+})(jQuery);
 
 function clone(obj){
 	if(!obj||typeof obj!=typeof {})
