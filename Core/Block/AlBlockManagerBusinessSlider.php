@@ -30,7 +30,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
         $defaultValue = '/bundles/businessslider/images/img1.jpg,/bundles/businessslider/images/img2.jpg,/bundles/businessslider/images/img3.jpg,/bundles/businessslider/images/img4.jpg';
         
         return array('HtmlContent' => $defaultValue, 
-                     'InternalJavascript' => '$(".slider").slide();');
+                     'InternalJavascript' => '$(".slider").startSlider();');
     }
     
     public function getHtmlContent() {
