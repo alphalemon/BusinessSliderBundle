@@ -8,12 +8,12 @@
             <parameter key="html_editor">true</parameter>
             <parameter key="internal_js">true</parameter>
         </parameter>
-        
-        <parameter key="businessslider.stylesheets" type="collection">
+
+        <parameter key="businessslider.external_stylesheets" type="collection">
             <parameter>@BusinessSliderBundle/Resources/public/css/business-slider.css</parameter>
         </parameter>
-        
-        <parameter key="businessslider.javascripts" type="collection">
+
+        <parameter key="businessslider.external_javascripts" type="collection">
             <parameter>@BusinessSliderBundle/Resources/public/js/tms-0.3.js</parameter>
             <parameter>@BusinessSliderBundle/Resources/public/js/tms_presets.js</parameter>
             <parameter>@BusinessSliderBundle/Resources/public/js/slider.js</parameter>
