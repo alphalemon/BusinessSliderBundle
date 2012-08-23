@@ -26,28 +26,33 @@ use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\ImagesBlock\AlBlockManager
  */
 class AlBlockManagerBusinessSlider extends AlBlockManagerImages
 {
-    public function getDefaultValue() {
+    public function getDefaultValue()
+    {
         $defaultValue = '/bundles/businessslider/images/img1.jpg,/bundles/businessslider/images/img2.jpg,/bundles/businessslider/images/img3.jpg,/bundles/businessslider/images/img4.jpg';
         
         return array('HtmlContent' => $defaultValue, 
                      'InternalJavascript' => '$(".slider").startSlider();');
     }
     
-    public function getHtmlContent() {
+    public function getHtmlContentForDeploy()
+    {
         $images = explode(',', $this->alBlock->getHtmlContent());
         
         return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el); }, $images)));
     }
     
-    public function getHtmlContentForEditor() {
+    public function getHtmlContentForEditor()
+    {
         return explode(',', $this->alBlock->getHtmlContent());
     }
     
-    public function getHideInEditMode() {
+    public function getHideInEditMode()
+    {
         return true;
     }
     
-    public function getReloadSuggested() {
+    public function getReloadSuggested()
+    {
         return true;
     }
 }
