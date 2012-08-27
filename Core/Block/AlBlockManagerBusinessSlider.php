@@ -66,7 +66,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
     {
         return true;
     }
-
+    
     public function getReloadSuggested()
     {
         return true;
