@@ -24,7 +24,7 @@
 
     <services>
         <service id="app_businessslider.block" class="%app_businessslider.block.class%">
-            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="service_container" />
             <tag name="alphalemon_cms.blocks_factory.block" description="Business slider"  type="BusinessSlider" group="business_theme_apps" />
         </service>
     </services>

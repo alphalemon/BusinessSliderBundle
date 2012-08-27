@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  *
  * For extra documentation and help please visit http://www.alphalemon.com
- * 
+ *
  * @license    GPL LICENSE Version 2.0
- * 
+ *
  */
 
 namespace AlphaLemon\Block\BusinessSliderBundle\Core\Block;
@@ -22,32 +22,60 @@ use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\ImagesBlock\AlBlockManager
 /**
  * AlBlockManagerBusinessSlider
  *
- * @author alphalemon
+ * @author alphalemon <webmaster@alphalemon.com>
  */
 class AlBlockManagerBusinessSlider extends AlBlockManagerImages
 {
-    public function getDefaultValue() {
-        $defaultValue = '/bundles/businessslider/images/img1.jpg,/bundles/businessslider/images/img2.jpg,/bundles/businessslider/images/img3.jpg,/bundles/businessslider/images/img4.jpg';
-        
-        return array('HtmlContent' => $defaultValue, 
+    public function getDefaultValue()
+    {
+        $defaultValue =
+        '{
+            "0" : {
+                "image" : "/bundles/businessslider/images/img1.jpg"
+            },
+            "1" : {
+                "image" : "/bundles/businessslider/images/img2.jpg"
+            },
+            "2" : {
+                "image" : "/bundles/businessslider/images/img3.jpg"
+            },
+            "3" : {
+                "image" : "/bundles/businessslider/images/img4.jpg"
+            }
+        }';
+
+        return array('HtmlContent' => $defaultValue,
                      'InternalJavascript' => '$(".slider").startSlider();');
     }
-    
-    public function getHtmlContent() {
-        $images = explode(',', $this->alBlock->getHtmlContent());
-        
-        return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el); }, $images)));
+
+    public function getHtmlContentForDeploy()
+    {
+        $images = $this->decodeJson();
+
+        return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el['image']); }, $images)));
     }
-    
-    public function getHtmlContentForEditor() {
-        return explode(',', $this->alBlock->getHtmlContent());
+
+    public function getHtmlContentForEditor()
+    {
+        $images = $this->decodeJson();
+
+        return array_map(function($el){ return $el['image']; }, $images);
     }
-    
-    public function getHideInEditMode() {
+
+    public function getHideInEditMode()
+    {
         return true;
     }
-    
-    public function getReloadSuggested() {
+
+    public function getReloadSuggested()
+    {
         return true;
+    }
+
+    private function decodeJson()
+    {
+        if (null === $this->alBlock) return;
+
+        return json_decode($this->alBlock->getHtmlContent(), true);
     }
 }
