@@ -18,6 +18,7 @@
 namespace AlphaLemon\Block\BusinessSliderBundle\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\ImagesBlock\AlBlockManagerImages;
+use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBlock;
 
 /**
  * AlBlockManagerBusinessSlider
@@ -50,14 +51,18 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
 
     public function getHtmlContentForDeploy()
     {
-        $images = $this->decodeJson();
+        if (null === $this->alBlock) return "";
+        
+        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getHtmlContent());
 
         return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el['image']); }, $images)));
     }
 
     public function getHtmlContentForEditor()
     {
-        $images = $this->decodeJson();
+        if (null === $this->alBlock) return "";
+        
+        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getHtmlContent());
 
         return array_map(function($el){ return $el['image']; }, $images);
     }
@@ -70,12 +75,5 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
     public function getReloadSuggested()
     {
         return true;
-    }
-
-    private function decodeJson()
-    {
-        if (null === $this->alBlock) return;
-
-        return json_decode($this->alBlock->getHtmlContent(), true);
     }
 }

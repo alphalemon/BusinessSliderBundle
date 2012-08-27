@@ -15,5 +15,8 @@
     "psr-0": { "AlphaLemon\\Block\\BusinessSliderBundle": ""
     }
   },
+  "require-dev": {
+      "alphalemon/alphalemon-cms-bundle": "dev-master"
+  },
   "target-dir" : "AlphaLemon/Block/BusinessSliderBundle"
 }
