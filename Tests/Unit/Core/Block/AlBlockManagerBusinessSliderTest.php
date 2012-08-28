@@ -59,7 +59,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
     {
         $this->initContainer();
         $blockManager = new AlBlockManagerBusinessSlider($this->container, $this->validator);
-        $this->assertEquals('', $blockManager->getHtmlContentForDeploy());
+        $this->assertEquals('', $blockManager->getHtml());
     }
 
     public function testTheSliderIsRendered()
@@ -68,7 +68,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
         $blockManager = new AlBlockManagerBusinessSlider($this->container, $this->validator);
         $block = $this->setUpBlock();
         $blockManager->set($block);
-        $content = $blockManager->getHtmlContentForDeploy();
+        $content = $blockManager->getHtml();
         
         $expectedResult = '<div class="slider"><ul class="items"><li><img src="/bundles/businessslider/images/img1.jpg" alt=""></li>' . "\n";
         $expectedResult .= '<li><img src="/bundles/businessslider/images/img2.jpg" alt=""></li>' . "\n";

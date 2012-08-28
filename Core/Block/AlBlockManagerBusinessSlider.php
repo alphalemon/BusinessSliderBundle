@@ -49,7 +49,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
                      'InternalJavascript' => '$(".slider").startSlider();');
     }
 
-    public function getHtmlContentForDeploy()
+    public function getHtml()
     {
         if (null === $this->alBlock) return "";
         
