@@ -53,7 +53,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
     {
         if (null === $this->alBlock) return "";
         
-        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getHtmlContent());
+        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock);
 
         return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el['image']); }, $images)));
     }
@@ -62,7 +62,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
     {
         if (null === $this->alBlock) return "";
         
-        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getHtmlContent());
+        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock);
 
         return array_map(function($el){ return $el['image']; }, $images);
     }
