@@ -47,7 +47,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
             }
         }';
         $expectedValue = array(
-            'HtmlContent' => $value,
+            'Content' => $value,
             'InternalJavascript' => '$(".slider").startSlider();',            
         );
         
@@ -82,7 +82,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
     {
         $this->initContainer();
         $blockManager = new AlBlockManagerBusinessSlider($this->container, $this->validator);
-        $this->assertEquals('', $blockManager->getHtmlContentForEditor());
+        $this->assertEquals('', $blockManager->getContentForEditor());
     }
     
     public function testFetchContentsForEditor()
@@ -91,7 +91,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
         $blockManager = new AlBlockManagerBusinessSlider($this->container, $this->validator);
         $block = $this->setUpBlock();
         $blockManager->set($block);
-        $content = $blockManager->getHtmlContentForEditor();
+        $content = $blockManager->getContentForEditor();
         
         $expectedResult = array(
             '/bundles/businessslider/images/img1.jpg',
@@ -137,7 +137,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
 
         $block = $this->getMock('AlphaLemon\AlphaLemonCmsBundle\Model\AlBlock');
         $block->expects($this->once())
-            ->method('getHtmlContent')
+            ->method('getContent')
             ->will($this->returnValue($value));
 
         return $block;

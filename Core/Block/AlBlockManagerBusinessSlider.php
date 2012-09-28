@@ -45,7 +45,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
             }
         }';
 
-        return array('HtmlContent' => $defaultValue,
+        return array('Content' => $defaultValue,
                      'InternalJavascript' => '$(".slider").startSlider();');
     }
 
@@ -58,7 +58,7 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
         return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el['image']); }, $images)));
     }
 
-    public function getHtmlContentForEditor()
+    public function getContentForEditor()
     {
         if (null === $this->alBlock) return "";
         
