@@ -55,12 +55,21 @@ class AlBlockManagerBusinessSlider extends AlBlockManagerImages
         
         $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock);
 
-        return sprintf('<div class="slider"><ul class="items">%s</ul></div>', implode("\n", array_map(function($el){ return sprintf('<li><img src="%s" alt=""></li>', $el['image']); }, $images)));
+        return array(
+            "RenderView" => array(
+                "view" => "BusinessSliderBundle:Slider:slider.html.twig",
+                "options" => array(
+                    "items" => $images,
+                )
+            )
+        );
     }
 
     public function getContentForEditor()
     {
-        if (null === $this->alBlock) return "";
+        if (null === $this->alBlock) {
+            return "";
+        }
         
         $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock);
 
