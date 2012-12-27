@@ -70,12 +70,7 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
         $blockManager->set($block);
         $content = $blockManager->getHtml();
         
-        $expectedResult = '<div class="slider"><ul class="items"><li><img src="/bundles/businessslider/images/img1.jpg" alt=""></li>' . "\n";
-        $expectedResult .= '<li><img src="/bundles/businessslider/images/img2.jpg" alt=""></li>' . "\n";
-        $expectedResult .= '<li><img src="/bundles/businessslider/images/img3.jpg" alt=""></li>' . "\n";
-        $expectedResult .= '<li><img src="/bundles/businessslider/images/img4.jpg" alt=""></li></ul></div>';
-        
-        $this->assertEquals($expectedResult, $content);
+        $this->assertEquals($this->getExpectedResult(), $content);
     }
     
     public function testAnEmptyStringIsReturnedWhenTheBlockHasNotBeenSetForContentEditor()
@@ -116,6 +111,40 @@ class AlBlockManagerBusinessSliderTest extends AlBlockManagerContainerBase
         $blockManager = new AlBlockManagerBusinessSlider($this->container, $this->validator);
         $this->assertTrue($blockManager->getReloadSuggested());
     }
+    
+    private function getExpectedResult()
+    {
+        return array
+        (
+            "RenderView" => array
+            (
+                "view" => "BusinessSliderBundle:Slider:slider.html.twig",
+                "options" => array
+                (
+                    "items" => array
+                    (
+                        array
+                        (
+                            "image" => "/bundles/businessslider/images/img1.jpg",
+                        ),
+                        array
+                        (
+                            "image" => "/bundles/businessslider/images/img2.jpg",
+                        ),
+                        array
+                        (
+                            "image" => "/bundles/businessslider/images/img3.jpg",
+                        ),
+                        array
+                        (
+                            "image" => "/bundles/businessslider/images/img4.jpg",
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
 
     private function setUpBlock()
     {
